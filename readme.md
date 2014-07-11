@@ -81,7 +81,7 @@
   ];
   var object = {
     prop1: 1,
-    prop2: 'test'
+    prop2: 'test',
     func: function (res) {
       //todo
     }
