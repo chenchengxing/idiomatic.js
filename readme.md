@@ -14,118 +14,122 @@
 - comment禁止写end of xxx
 - 禁止逗号先行
 
-### if while for
-    ```javascript
+### if / while / for
+```javascript
 
-    if (condition && ddfd) {
-      // statements
-    }
-    if (condition &&
-        very_long_condition ||
-        another
-    ) {
-      // statements
-    }
+  if (condition && ddfd) {
+    // statements
+  }
+  if (condition &&
+      very_long_condition ||
+      another
+  ) {
+    // statements
+  }
 
-    while (condition) {
-      // statements
-    }
+  while (condition) {
+    // statements
+  }
 
-    var i,
-      length = 100;
+  var
+    i,
+    length = 100;
 
-    for (i = 0; i < length; i++) {
-      // statements
-    }
+  for (i = 0; i < length; i++) {
+    // statements
+  }
 
-    var prop;
+  var prop;
 
-    for (prop in object) {
-      // statements
-    }
+  for (prop in object) {
+    // statements
+  }
 
-    if (true) {
-      // statements
-    } else {
-      // statements
-    }
+  if (true) {
+    // statements
+  } else {
+    // statements
+  }
 
-    ```
+```
 
 ### 赋值，声明
+```javascript
 
-    ```javascript
+  // Variables
+  var
+    foo = 'bar',
+    num = 1,
+    undef;
 
-    // Variables
-    var foo = 'bar',
-      num = 1,
-      undef;
+  // Literal notations:
+  var
+    n = 100,
+    array = ['a', 'b', 'c'],
+    object = {};
 
-    // Literal notations:
-    var array = [],
-      object = {};
-
-    //很长怎么办
-    var array = [{
+  //很长怎么办
+  var array = [
+    {
       id: 1,
       name: 'Jack Bower'
-    }, {
+    },
+    {
       id: 2,
       name: 'Lorence'
-    }];
-    var object = {
-      prop1: 1,
-      prop2: 'test'
-      func: function (res) {
-        //todo
-      }
-    };
-  ```
+    }
+  ];
+  var object = {
+    prop1: 1,
+    prop2: 'test'
+    func: function (res) {
+      //todo
+    }
+  };
+```
+### function
+```javascript
 
-    ```javascript
+  // Named Function Declaration
+  function foo(arg1, argN) {
 
-    // Named Function Declaration
-    function foo(arg1, argN) {
+  }
 
+  // Usage
+  foo(arg1, argN);
+
+
+  // Really contrived continuation passing style
+  function square(number, callback) {
+    callback(number * number);
+  }
+
+  square(10, function (square) {
+    // callback statements
+  });
+
+
+  // Function Expression
+  var square = function (number) {
+    // Return something valuable and relevant
+    return number * number;
+  };
+
+  // Function Expression with Identifier
+  // This preferred form has the added value of being
+  // able to call itself and have an identity in stack traces:
+  var factorial = function factorial(number) {
+    if (number < 2) {
+      return 1;
     }
 
-    // Usage
-    foo(arg1, argN);
+    return number * factorial(number - 1);
+  };
 
+```
 
-    // Really contrived continuation passing style
-    function square(number, callback) {
-      callback(number * number);
-    }
-
-    square(10, function (square) {
-      // callback statements
-    });
-
-
-    // Function Expression
-    var square = function(number) {
-      // Return something valuable and relevant
-      return number * number;
-    };
-
-    // Function Expression with Identifier
-    // This preferred form has the added value of being
-    // able to call itself and have an identity in stack traces:
-    var factorial = function factorial(number) {
-      if (number < 2) {
-        return 1;
-      }
-
-      return number * factorial(number - 1);
-    };
-
-    ```
-
-
-    C. Exceptions, Slight Deviations
-
-    ```javascript
+### Exceptions, Slight Deviations
+```javascript
 
     // Functions with callbacks
     foo(function () {
@@ -149,467 +153,458 @@
 
     }
 
-    ```
+```
 
 
 
 
 
 ### Type Checking 类型检查
+  String:
 
+      typeof variable === 'string'
 
-    String:
+  Number:
 
-        typeof variable === 'string'
+      typeof variable === 'number'
 
-    Number:
+  Boolean:
 
-        typeof variable === 'number'
+      typeof variable === 'boolean'
 
-    Boolean:
+  Object:
 
-        typeof variable === 'boolean'
+      typeof variable === 'object'
 
-    Object:
+  Array:
 
-        typeof variable === 'object'
+      Array.isArray( arrayLikeObject )
+      (wherever possible)
 
-    Array:
+  Node:
 
-        Array.isArray( arrayLikeObject )
-        (wherever possible)
+      elem.nodeType === 1
 
-    Node:
+  null:
 
-        elem.nodeType === 1
+      variable === null
 
-    null:
+  null or undefined:
 
-        variable === null
+      variable == null
 
-    null or undefined:
+  undefined:
 
-        variable == null
+    Global Variables:
 
-    undefined:
+      typeof variable === 'undefined'
 
-      Global Variables:
+    Local Variables:
 
-        typeof variable === 'undefined'
+      variable === undefined
 
-      Local Variables:
+    Properties:
 
-        variable === undefined
-
-      Properties:
-
-        object.prop === undefined
-        object.hasOwnProperty( prop )
-        'prop' in object
+      object.prop === undefined
+      object.hasOwnProperty( prop )
+      'prop' in object
 
 ### 转换
+```javascript
+
+  var number = 1,
+    string = '1',
+    bool = false;
+
+  number;
+  // 1
+
+  number + '';
+  // '1'
+
+  string;
+  // '1'
+
+  +string;
+  // 1
+
+  +string++;
+  // 1
+
+  string;
+  // 2
+
+  bool;
+  // false
+
+  +bool;
+  // 0
+
+  bool + '';
+  // 'false'
+
+```
 
 
-    ```javascript
+```javascript
 
-    var number = 1,
-      string = '1',
-      bool = false;
+  var
+    number = 1,
+    string = '1',
+    bool = true;
 
-    number;
-    // 1
+  string === number;
+  // false
 
-    number + '';
-    // '1'
+  string === number + '';
+  // true
 
-    string;
-    // '1'
+  +string === number;
+  // true
 
-    +string;
-    // 1
+  bool === number;
+  // false
 
-    +string++;
-    // 1
+  +bool === number;
+  // true
 
-    string;
-    // 2
+  bool === string;
+  // false
 
-    bool;
-    // false
+  bool === !!string;
+  // true
 
-    +bool;
-    // 0
+```
 
-    bool + '';
-    // 'false'
-    ```
+```javascript
 
+  var array = [ 'a', 'b', 'c' ];
 
-    ```javascript
+  !!~array.indexOf('a');
+  // true
 
-    var number = 1,
-      string = '1',
-      bool = true;
+  !!~array.indexOf("b");
+  // true
 
-    string === number;
-    // false
+  !!~array.indexOf("c");
+  // true
 
-    string === number + '';
-    // true
+  !!~array.indexOf("d");
+  // false
 
-    +string === number;
-    // true
+  // Note that the above should be considered "unnecessarily clever"
+  // Prefer the obvious approach of comparing the returned value of
+  // indexOf, like:
 
-    bool === number;
-    // false
+  if ( array.indexOf( "a" ) >= 0 ) {
+    // ...
+  }
 
-    +bool === number;
-    // true
+```
 
-    bool === string;
-    // false
+```javascript
 
-    bool === !!string;
-    // true
-    ```
+  var num = 2.5;
 
-    ```javascript
-    var array = [ 'a', 'b', 'c' ];
+  parseInt( num, 10 );
 
-    !!~array.indexOf('a');
-    // true
+  // is the same as...
 
-    !!~array.indexOf("b");
-    // true
+  ~~num;
 
-    !!~array.indexOf("c");
-    // true
+  num >> 0;
 
-    !!~array.indexOf("d");
-    // false
+  num >>> 0;
 
-    // Note that the above should be considered "unnecessarily clever"
-    // Prefer the obvious approach of comparing the returned value of
-    // indexOf, like:
-
-    if ( array.indexOf( "a" ) >= 0 ) {
-      // ...
-    }
-    ```
-
-    ```javascript
-
-    var num = 2.5;
-
-    parseInt( num, 10 );
-
-    // is the same as...
-
-    ~~num;
-
-    num >> 0;
-
-    num >>> 0;
-
-    // All result in 2
+  // All result in 2
 
 
-    // Keep in mind however, that negative numbers will be treated differently...
+  // Keep in mind however, that negative numbers will be treated differently...
 
-    var neg = -2.5;
+  var neg = -2.5;
 
-    parseInt( neg, 10 );
+  parseInt( neg, 10 );
 
-    // is the same as...
+  // is the same as...
 
-    ~~neg;
+  ~~neg;
 
-    neg >> 0;
+  neg >> 0;
 
-    // All result in -2
-    // However...
+  // All result in -2
+  // However...
 
-    neg >>> 0;
+  neg >>> 0;
 
-    // Will result in 4294967294
+  // Will result in 4294967294
 
-
-
-
-    ```
+```
 
 
 
 ### Conditional Evaluation 条件求值
 
-    ```javascript
+```javascript
 
-    // When only evaluating that an array has length,
-    // instead of this:
-    if ( array.length > 0 ) ...
+  // When only evaluating that an array has length,
+  // instead of this:
+  if ( array.length > 0 ) ...
 
-    // ...evaluate truthiness, like this:
-    if ( array.length ) ...
-
-
-    // When only evaluating that an array is empty,
-    // instead of this:
-    if ( array.length === 0 ) ...
-
-    // ...evaluate truthiness, like this:
-    if ( !array.length ) ...
+  // ...evaluate truthiness, like this:
+  if ( array.length ) ...
 
 
-    // When only evaluating that a string is not empty,
-    // instead of this:
-    if ( string !== '' ) ...
+  // When only evaluating that an array is empty,
+  // instead of this:
+  if ( array.length === 0 ) ...
 
-    // ...evaluate truthiness, like this:
-    if ( string ) ...
-
-
-    // When only evaluating that a string _is_ empty,
-    // instead of this:
-    if ( string === "" ) ...
-
-    // ...evaluate falsy-ness, like this:
-    if ( !string ) ...
+  // ...evaluate truthiness, like this:
+  if ( !array.length ) ...
 
 
-    // When only evaluating that a reference is true,
-    // instead of this:
-    if ( foo === true ) ...
+  // When only evaluating that a string is not empty,
+  // instead of this:
+  if ( string !== '' ) ...
 
-    // ...evaluate like you mean it, take advantage of built in capabilities:
-    if ( foo ) ...
-
-
-    // 4.1.6
-    // When evaluating that a reference is false,
-    // instead of this:
-    if ( foo === false ) ...
-
-    // ...use negation to coerce a true evaluation
-    if ( !foo ) ...
-
-    // ...Be careful, this will also match: 0, "", null, undefined, NaN
-    // If you _MUST_ test for a boolean false, then use
-    if ( foo === false ) ...
+  // ...evaluate truthiness, like this:
+  if ( string ) ...
 
 
-    // 4.1.7
-    // When only evaluating a ref that might be null or undefined, but NOT false, "" or 0,
-    // instead of this:
-    if ( foo === null || foo === undefined ) ...
+  // When only evaluating that a string _is_ empty,
+  // instead of this:
+  if ( string === "" ) ...
 
-    // ...take advantage of == type coercion, like this:
-    if ( foo == null ) ...
-
-    // Remember, using == will match a `null` to BOTH `null` and `undefined`
-    // but not `false`, "" or 0
-    null == undefined
-
-    ```
-    ALWAYS evaluate for the best, most accurate result - the above is a guideline, not a dogma.
-
-    ```javascript
+  // ...evaluate falsy-ness, like this:
+  if ( !string ) ...
 
 
-    // 4.2.2
-    // Booleans, Truthies & Falsies
+  // When only evaluating that a reference is true,
+  // instead of this:
+  if ( foo === true ) ...
 
-    // Booleans:
-    true, false
+  // ...evaluate like you mean it, take advantage of built in capabilities:
+  if ( foo ) ...
 
-    // Truthy:
-    'foo', 1
 
-    // Falsy:
-    '', 0, null, undefined, NaN, void 0
+  // 4.1.6
+  // When evaluating that a reference is false,
+  // instead of this:
+  if ( foo === false ) ...
 
-    ```
+  // ...use negation to coerce a true evaluation
+  if ( !foo ) ...
+
+  // ...Be careful, this will also match: 0, "", null, undefined, NaN
+  // If you _MUST_ test for a boolean false, then use
+  if ( foo === false ) ...
+
+
+  // 4.1.7
+  // When only evaluating a ref that might be null or undefined, but NOT false, "" or 0,
+  // instead of this:
+  if ( foo === null || foo === undefined ) ...
+
+  // ...take advantage of == type coercion, like this:
+  if ( foo == null ) ...
+
+  // Remember, using == will match a `null` to BOTH `null` and `undefined`
+  // but not `false`, "" or 0
+  null == undefined
+
+```
+
+ALWAYS evaluate for the best, most accurate result - the above is a guideline, not a dogma.
+
+```javascript
+
+  // 4.2.2
+  // Booleans, Truthies & Falsies
+
+  // Booleans:
+  true, false
+
+  // Truthy:
+  'foo', 1
+
+  // Falsy:
+  '', 0, null, undefined, NaN, void 0
+
+```
 
 
 ###Practical Style
 
-    ```javascript
+```javascript
+  (function (global) {
+    var Module = (function () {
 
-    (function(global) {
-      var Module = (function () {
+      var data = 'secret';
 
-        var data = 'secret';
-
-        return {
-          // This is some boolean property
-          bool: true,
-          // Some string value
-          string: 'a string',
-          // An array property
-          array: [ 1, 2, 3, 4 ],
-          // An object property
-          object: {
-            lang: 'en-Us'
-          },
-          getData: function() {
-            // get the current value of `data`
-            return data;
-          },
-          setData: function (value) {
-            // set the value of `data` and return it
-            return (data = value);
-          }
-        };
-      })();
-
-      // Other things might happen here
-
-      // expose our module to the global object
-      global.Module = Module;
-
-    })(this);
-
-    ```
-
-    ```javascript
-
-    // 5.2.1
-    // A Practical Constructor
-
-    (function( global ) {
-
-      function Ctor(foo) {
-
-        this.foo = foo;
-
-        return this;
-      }
-
-      Ctor.prototype.getFoo = function () {
-        return this.foo;
+      return {
+        // This is some boolean property
+        bool: true,
+        // Some string value
+        string: 'a string',
+        // An array property
+        array: [ 1, 2, 3, 4 ],
+        // An object property
+        object: {
+          lang: 'en-Us'
+        },
+        getData: function () {
+          // get the current value of `data`
+          return data;
+        },
+        setData: function (value) {
+          // set the value of `data` and return it
+          return (data = value);
+        }
       };
+    })();
 
-      Ctor.prototype.setFoo = function (val) {
-        return (this.foo = val);
-      };
+    // Other things might happen here
+
+    // expose our module to the global object
+    global.Module = Module;
+
+  })(this);
+
+```
+
+```javascript
+
+  // 5.2.1
+  // A Practical Constructor
+
+  (function ( global ) {
+
+    function Ctor(foo) {
+
+      this.foo = foo;
+
+      return this;
+    }
+
+    Ctor.prototype.getFoo = function () {
+      return this.foo;
+    };
+
+    Ctor.prototype.setFoo = function (val) {
+      return (this.foo = val);
+    };
 
 
-      // To call constructor's without `new`, you might do this:
-      var ctor = function ( foo ) {
-        return new Ctor( foo );
-      };
+    // To call constructor's without `new`, you might do this:
+    var ctor = function ( foo ) {
+      return new Ctor( foo );
+    };
 
 
-      // expose our constructor to the global object
-      global.ctor = ctor;
+    // expose our constructor to the global object
+    global.ctor = ctor;
 
-    })( this );
+  })( this );
 
-    ```
+```
 
 
 
 ### Naming
+```javascript
+
+  // 6.A.1.1
+  // Example of code with poor names
+
+  function q(s) {
+    return document.querySelectorAll(s);
+  }
+  var i,a=[],els=q("#foo");
+  for(i=0;i<els.length;i++){a.push(els[i]);}
+  ```
+
+  Without a doubt, you've written code like this - hopefully that ends today.
+
+  Here's the same piece of logic, but with kinder, more thoughtful naming (and a readable structure):
+
+  ```javascript
+
+  // 6.A.2.1
+  // Example of code with improved names
+
+  function query(selector) {
+    return document.querySelectorAll(selector);
+  }
+
+  var idx = 0,
+    elements = [],
+    matches = query("#foo"),
+    length = matches.length;
+
+  for (; idx < length; idx++) {
+    elements.push(matches[idx]);
+  }
+
+```
+
+A few additional naming pointers:
+
+```javascript
+
+  // 6.A.3.1
+  // Naming strings
+
+  `dog` is a string
 
 
-    ```javascript
+  // 6.A.3.2
+  // Naming arrays
 
-    // 6.A.1.1
-    // Example of code with poor names
-
-    function q(s) {
-      return document.querySelectorAll(s);
-    }
-    var i,a=[],els=q("#foo");
-    for(i=0;i<els.length;i++){a.push(els[i]);}
-    ```
-
-    Without a doubt, you've written code like this - hopefully that ends today.
-
-    Here's the same piece of logic, but with kinder, more thoughtful naming (and a readable structure):
-
-    ```javascript
-
-    // 6.A.2.1
-    // Example of code with improved names
-
-    function query(selector) {
-      return document.querySelectorAll(selector);
-    }
-
-    var idx = 0,
-      elements = [],
-      matches = query("#foo"),
-      length = matches.length;
-
-    for (; idx < length; idx++) {
-      elements.push(matches[idx]);
-    }
-
-    ```
-
-    A few additional naming pointers:
-
-    ```javascript
-
-    // 6.A.3.1
-    // Naming strings
-
-    `dog` is a string
+  `dogs` is an array of `dog` strings
 
 
-    // 6.A.3.2
-    // Naming arrays
+  // 6.A.3.3
+  // Naming functions, objects, instances, etc
 
-    `dogs` is an array of `dog` strings
-
-
-    // 6.A.3.3
-    // Naming functions, objects, instances, etc
-
-    camelCase; function and var declarations
+  camelCase; function and var declarations
 
 
-    // 6.A.3.4
-    // Naming constructors, prototypes, etc.
+  // 6.A.3.4
+  // Naming constructors, prototypes, etc.
 
-    PascalCase; constructor function
-
-
-    // 6.A.3.5
-    // Naming regular expressions
-
-    rDesc = //;
+  PascalCase; constructor function
 
 
-    // 6.A.3.6
-    // From the Google Closure Library Style Guide
+  // 6.A.3.5
+  // Naming regular expressions
 
-    functionNamesLikeThis;
-    variableNamesLikeThis;
-    ConstructorNamesLikeThis;
-    EnumNamesLikeThis;
-    methodNamesLikeThis;
-    SYMBOLIC_CONSTANTS_LIKE_THIS;
-
-    ```
+  rDesc = //;
 
 
+  // 6.A.3.6
+  // From the Google Closure Library Style Guide
 
+  functionNamesLikeThis;
+  variableNamesLikeThis;
+  ConstructorNamesLikeThis;
+  EnumNamesLikeThis;
+  methodNamesLikeThis;
+  SYMBOLIC_CONSTANTS_LIKE_THIS;
 
+```
 
 ### MISC 杂碎
 
-    This section will serve to illustrate ideas and concepts that should not be considered dogma, but instead exists to encourage questioning practices in an attempt to find better ways to do common JavaScript programming tasks.
+  This section will serve to illustrate ideas and concepts that should not be considered dogma, but instead exists to encourage questioning practices in an attempt to find better ways to do common JavaScript programming tasks.
 
-    A. Using `switch` should be avoided, modern method tracing will blacklist functions with switch statements
+  A. Using `switch` should be avoided, modern method tracing will blacklist functions with switch statements
 
-    There seems to be drastic improvements to the execution of `switch` statements in latest releases of Firefox and Chrome.
-    http://jsperf.com/switch-vs-object-literal-vs-module
+  There seems to be drastic improvements to the execution of `switch` statements in latest releases of Firefox and Chrome.
+  http://jsperf.com/switch-vs-object-literal-vs-module
 
-    Notable improvements can be witnessed here as well:
-    https://github.com/rwldrn/idiomatic.js/issues/13
+  Notable improvements can be witnessed here as well:
+  https://github.com/rwldrn/idiomatic.js/issues/13
 
-    ```javascript
+  ```javascript
 
     // 7.A.1.1
     // An example switch statement
@@ -634,24 +629,24 @@
 
     // Example returns for illustration only.
     cases = {
-      alpha: function() {
+      alpha: function () {
         // statements
         // a return
         return ['Alpha', arguments.length];
       },
-      beta: function() {
+      beta: function () {
         // statements
         // a return
         return ['Beta', arguments.length];
       },
-      _default: function() {
+      _default: function () {
         // statements
         // a return
         return ['Default', arguments.length];
       }
     };
 
-    delegator = function() {
+    delegator = function () {
       var args, key, delegate;
 
       // Transform arguments list into an array
@@ -673,11 +668,11 @@
       return delegate.apply(null, args);
     };
 
-    ```
+  ```
 
-    B. Early returns promote code readability with negligible performance difference
+  B. Early returns promote code readability with negligible performance difference
 
-    ```javascript
+  ```javascript
 
     // 7.B.1.1
     // Bad:
@@ -702,7 +697,7 @@
       return 'quux';
     }
 
-    ```
+  ```
 
 
 
