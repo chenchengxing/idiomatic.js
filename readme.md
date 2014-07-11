@@ -13,7 +13,7 @@
 ### 禁止！
 - comment禁止写end of xxx
 - 禁止逗号先行
-- 
+
 ### if while for
     ```javascript
 
@@ -129,7 +129,7 @@
 
     // Functions with callbacks
     foo(function () {
-      
+
     });
 
     // Function accepting an array, no space
@@ -151,7 +151,7 @@
 
     ```
 
-    
+
 
 
 
@@ -414,7 +414,7 @@
 
     ```javascript
 
-    
+
     // 4.2.2
     // Booleans, Truthies & Falsies
 
@@ -594,7 +594,7 @@
     ```
 
 
-    
+
 
 
 ### MISC 杂碎
